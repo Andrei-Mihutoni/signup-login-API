@@ -1,31 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" deffer></script>
-    <title>Document</title>
-</head>
+<?php
+$_title = 'Login';
+require_once(__DIR__.'/components/header.php');
+?>
+
 <body>
+  <!-- <h1>Login</h1>
     <form onsubmit="return false">
     <input name="email" type="text" placeholder="email">
     <input name="password" type="password" placeholder="password">
     <button onclick="login()">Login</button>
-    </form>
+    </form> -->
+
+    <main id="login-main">
+    <section id="form-section" class="form-section">
+       <div class="logo"></div>
+
+        <fieldset id="form-group" class="form-fieldset">
+  <form id="form-login" class="form-group"onsubmit="return false">
+    <h1>Log-in</h1>
+     
+        <label for="email">Email</label>
+        <input name="email" type="text" placeholder="" required></input>
+
+        <label for="password">Password</label>
+        <input name="password" type="password" placeholder="password" required>
+
+        <button id="signup-btn" class="yellow-btn" onclick="login()">Continue</button>
+  </form>
+
+  <div id="legalTextRow" class="a-row">
+  By creating an account, you agree to Amazon's <a href="/gp/help/customer/display.html/ref=ap_register_notification_condition_of_use?ie=UTF8&amp;nodeId=508088">Conditions of Use</a> and <a href="/gp/help/customer/display.html/ref=ap_register_notification_privacy_notice?ie=UTF8&amp;nodeId=468496">Privacy Notice</a>.
+</div>
+
+
+
+<div class="a-row">
+          Already have an account?
+          <a class="a-link-emphasis" href="signup.php">
+            Sign-In
+          </a>
+        </div>
+  </fieldset>
+  
+</section>
+
+
+
+</main>
+
+
+
+
+
+
 
     <script>
 
 
 async function login(){
       const form = event.target.form
-      console.log(form)
+      // console.log(form)
       let conn = await fetch("api-login", {
         method: "POST",
         body: new FormData(form)
       })
-    //   let res = await conn.json()
-    //   console.log(res)
+      let response = await conn.json()
+      console.log(response)
       if( conn.ok ){ location.href = "user" }
     };
 

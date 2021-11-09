@@ -10,7 +10,7 @@ async function login() {
     let res = await conn.json();
     console.log(res);
     if (conn.ok) {
-        location.href = "user.php"
+        location.href = "../user.php"
 
     }
 }

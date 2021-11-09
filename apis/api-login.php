@@ -1,6 +1,7 @@
 <?php
 
-require_once('globals.php');
+require_once(__DIR__.'/../globals/globals.php');
+
 
 // Validate the email
 if( ! isset($_POST['email'] )) { _res(400, ['info' => 'email required']); };
@@ -8,8 +9,8 @@ if( ! filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ) {_res(400, ['info'=>'
 
 
 // Validate the password
-// if( ! isset($_POST['password'] )) { _res(400, ['info' => 'password required']); };
-// if ( strlen($_POST['password']) < _PASSW0RD_MIN_LEN ) { _res(400, ['info' => 'password too short. Password length shoud be minimum '._PASSW0RD_MIN_LEN.' charachetrs']); };
+if ( ! isset($_POST['password'] )) { _res(400, ['info' => 'password required']); };
+if ( strlen($_POST['password']) < _PASSW0RD_REQUIRED ) { _res(400, ['info' => 'password required']); };
 // if ( strlen($_POST['password']) > _PASSW0RD_MAX_LEN ) { _res(400, ['info' => 'password too long.  Password length shoud be Maximum '._PASSW0RD_MAX_LEN.' charachetrs']); };
 
 
@@ -20,22 +21,25 @@ try{
   }catch(Exception $ex){
     _res(500, ['info'=>'system under maintainance', 'error line'=>__LINE__]);
   }
-  
+
   
   try{
+ 
     $q = $db->prepare('SELECT * FROM users WHERE email = :email ');
     $q->bindValue(':email', $_POST['email']);
     $q->execute();
     $row = $q->fetch();
-    // var_dump($row);
-    // print_r($row);
-    // echo json_encode($row);
-    var_export($row);
+ 
     if(!$row){ _res(400, ['info'=>'wrong credentials', 'error line'=>__LINE__]); }
   
+  // Password hash verify
+    if(!password_verify($_POST['password'], $row['password'])) {
+      _res(400, ['info' => "Wrong password", 'error line'=>__LINE__]);
+    };
+
     // Success
     session_start();
-    $_SESSION['user_name'] = $row['user_name'];
+    $_SESSION['first_name'] = $row['first_name'];
     _res(200, ['info'=>'success login']);
   
   
@@ -43,6 +47,10 @@ try{
     _res(500, ['info'=>'system under maintainance', 'error'=>__LINE__]);
   }
   
+
+
+
+
   
 
 
