@@ -1,0 +1,2 @@
+After signup - inform the user to check email and verify before loging in
+Log in - allow log in only to "verified = 1" users

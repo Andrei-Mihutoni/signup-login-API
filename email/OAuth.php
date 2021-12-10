@@ -130,10 +130,10 @@ class OAuth
 
         return base64_encode(
             'user=' .
-            $this->oauthUserEmail .
-            "\001auth=Bearer " .
-            $this->oauthToken .
-            "\001\001"
+                $this->oauthUserEmail .
+                "\001auth=Bearer " .
+                $this->oauthToken .
+                "\001\001"
         );
     }
 }
