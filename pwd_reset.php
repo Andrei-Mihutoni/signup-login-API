@@ -88,10 +88,10 @@ try {
 
 
           <label for="password">New password</label>
-          <input name="password" type="text" placeholder="At least 6 characters"></input>
+          <input name="password" type="password" minlength="6" maxlength="20" placeholder="At least 6 characters"></input>
 
           <label for="re-password">Re-enter new password</label>
-          <input name="re-password" type="text" placeholder=""></input>
+          <input name="re-password" type="password" minlength="6" maxlength="20" placeholder=""></input>
 
           <!-- <label for="password">Password</label>
         <input name="password" type="password" placeholder="password" required> -->

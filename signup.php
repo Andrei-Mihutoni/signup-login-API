@@ -14,10 +14,10 @@ require_once(__DIR__ . '/components/header.php');
         <h1>Create account</h1>
         <div id="response"></div>
         <label for="first_name">First name</label>
-        <input name="first_name" type="text" placeholder="at least 2 characters" required></input>
+        <input name="first_name" type="text" placeholder="at least 2 characters" minlength="2" maxlength="30" required></input>
 
         <label for="last_name">Last name</label>
-        <input name="last_name" type="text" placeholder="at least 2 characters" required></input>
+        <input name="last_name" type="text" placeholder="at least 2 characters" minlength="2" maxlength="30" required></input>
 
         <label for="phone_number">Phone number</label>
         <input name="phone_number" type="tel" placeholder="danish phone number, 8 numbers" required></input>
@@ -27,10 +27,10 @@ require_once(__DIR__ . '/components/header.php');
         <input name="email" type="email" placeholder="" pattern=""></input>
 
         <label for="password">Password</label>
-        <input name="password" type="text" placeholder="At least 6 characters"></input>
+        <input name="password" type="password" minlength="6" maxlength="20" placeholder="At least 6 characters"></input>
 
         <label for="re-password">Re-enter password</label>
-        <input name="re-password" type="text" placeholder=""></input>
+        <input name="re-password" type="password" minlength="6" maxlength="20" placeholder=""></input>
 
         <button id="signup-btn" class="yellow-btn" onclick="signUp()">Create your Amazon account</button>
       </form>

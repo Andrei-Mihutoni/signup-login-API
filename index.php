@@ -1,16 +1,6 @@
 <?php
 $_title = 'Welcome';
 require_once(__DIR__ . '/components/header.php');
-?>
-<!-- <div class="flex-inline">
-    <h1>Welcome</h1>
-    <div id="index-signin-group">    
-        <button onclick="window.location = 'login.php'"  class="nav-action-button"> Sign In </button>
-        <span>New customer? <a href="signup.php"> Start here.</a></span>
-    </div>
-</div> -->
-
-<?php
 $amazonLink = 'amazon-html.txt';
 $body = file_get_contents($amazonLink);
 echo $body;

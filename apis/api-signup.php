@@ -10,8 +10,8 @@ if (!isset($_POST['first_name'])) {
 if (strlen($_POST['first_name']) < 2) {
   send_400('first name must have minimum 2 characters');
 }   // check if the name contain at least 2 character
-if (strlen($_POST['first_name']) > 15) {
-  send_400('first name must have maximum 15 characters');
+if (strlen($_POST['first_name']) > 30) {
+  send_400('first name must have maximum 30 characters');
 }   // check if the name contain at least 2 character
 
 // VALIDATE last_name
@@ -69,38 +69,6 @@ $db = _db();
 
 
 
-
-
-// try {
-//   $verification_key = bin2hex(random_bytes(16));
-//   $pwd_reset_key = bin2hex(random_bytes(16));
-
-//   // Insert data in the DB
-//   $query = $db->prepare('INSERT INTO users VALUES(:user_id, :first_name, :last_name,:phone_number, :email, :password, :verified, :verification_key, :pwd_reset_key)');
-//   $query->bindValue(":user_id", null); // The db will give this automaticaly.
-//   $query->bindValue(":first_name", $_POST['first_name']);
-//   $query->bindValue(":last_name", $_POST['last_name']);
-//   $query->bindValue(":phone_number", $_POST['phone_number']);
-//   $query->bindValue(":email", $_POST['email']);
-//   $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//   $query->bindValue(":password", $hashedPassword);
-//   $query->bindValue(":verified", 0);
-//   $query->bindValue(":verification_key", "$verification_key");
-//   $query->bindValue(":pwd_reset_key", $pwd_reset_key);
-//   $query->execute();
-//   $userID = $db->lastinsertid();
-
-
-//   // SUCCESS
-//   $response = ["info" => "user created", "userID" => $userID];
-//   echo json_encode($response);
-// } catch (Exception $ex) {
-//   http_response_code(500);
-//   echo 'System under maintainance';
-//   echo $ex;
-//   exit();
-// }
-
 try {
   $verification_key = bin2hex(random_bytes(16));
   $pwd_reset_key = bin2hex(random_bytes(16));
@@ -122,7 +90,7 @@ try {
 
 
   // SUCCESS
-  $response = ["info" => "user created", "userID" => $userID];
+  $response = ["info" => "Account created. Please go to your email and verify it in order to log in.", "userID" => $userID];
   echo json_encode($response);
 } catch (Exception $ex) {
   http_response_code(500);

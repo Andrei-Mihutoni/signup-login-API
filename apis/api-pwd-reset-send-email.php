@@ -29,7 +29,7 @@ try {
   // echo json_encode($row['pwd_reset_key']);
 
   // SUCCESS
-  $response = ["info" => "A reset email has been sent. Please follow the instructions received in the email. You can now close this page.", "to" => $_POST['email']];
+  $response = ["info" => "A reset password link has beem sent to your email. Please follow the instructions received in the email. You can now close this page.", "to" => $_POST['email']];
   echo json_encode($response);
 } catch (Exception $ex) {
   http_response_code(500);

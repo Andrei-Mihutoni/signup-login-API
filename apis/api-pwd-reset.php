@@ -52,7 +52,7 @@ try {
 
   $db->commit();
 
-  $response = ["info" => "Yaaay! Password has been reset. You will be redirected to the Log-in page"];
+  $response = ["info" => "All good! Password has been reset. You will be redirected to the Log-in page"];
   echo json_encode($response);
 } catch (Exception $ex) {
   http_response_code(500);

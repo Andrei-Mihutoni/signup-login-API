@@ -54,7 +54,7 @@ try {
   // Success
   session_start();
   $_SESSION['first_name'] = $row['first_name'];
-  _res(200, ['info' => 'success login']);
+  _res(200, ['info' => 'Login successful']);
 } catch (Exception $ex) {
   _res(500, ['info' => 'system under maintainance', 'error' => __LINE__]);
 }

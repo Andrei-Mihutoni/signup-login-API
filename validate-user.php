@@ -57,7 +57,7 @@ try{
   $query->bindValue(':verification_key2', $verification_key);
   $query->execute();
   $data = $query->fetch();
-  echo json_encode($data);
+  // echo json_encode($data);
 }catch(Exception $ex){
   http_response_code(500);
   echo 'System under maintainance';
@@ -69,9 +69,9 @@ try{
 
 
 
-// TODO: Say Congrats to the user
+// Verification success. Say Congrats to the user and give a link to the log in page
 $name = $_GET['name'];
-echo "<div id='center-flex-row'><h2>CONGRATS $name ... your account is verified.</h2>
+echo "<div id='center-flex-row'><h2>CONGRATS $name ... your email is now verified.</h2>
 <h2> <a href='http://localhost/login.php'> 
 Click here to log in. 
 </a></div>";

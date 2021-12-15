@@ -7,11 +7,17 @@
   margin: 0px;
 }
 
+body {
+  color: hotpink;
+  background-color: hotpink;
+}
+
 #signup-main,
 #login-main {
   display: flex;
   justify-content: center;
   margin-top: 35px;
+  background-color: hotpink;
 }
 
 h1 {
@@ -96,6 +102,13 @@ fieldset {
   border-radius: 3px;
   box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
   outline: 0;
+}
+
+.form-input-name-group {
+  background-color: hotpink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .yellow-btn {

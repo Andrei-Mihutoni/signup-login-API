@@ -1,0 +1,6 @@
+div#items {
+}
+div#items div.item {
+  display: grid;
+  grid-template-columns: 100fr 100fr 100fr;
+}
