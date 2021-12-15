@@ -74,7 +74,7 @@ require_once(__DIR__ . '/components/header.php');
       document.querySelector("#response").textContent = response.info;
 
       if (conn.ok) {
-        location.href = "products.php"
+        location.href = "homepage.php"
       }
     };
   </script>

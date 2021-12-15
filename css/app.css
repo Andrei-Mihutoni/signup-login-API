@@ -7,17 +7,17 @@
   margin: 0px;
 }
 
-body {
+/* body {
   color: hotpink;
   background-color: hotpink;
-}
+} */
 
 #signup-main,
 #login-main {
   display: flex;
   justify-content: center;
   margin-top: 35px;
-  background-color: hotpink;
+  /* background-color: hotpink; */
 }
 
 h1 {

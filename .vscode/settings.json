@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.module": "php"
+  },
+  "editor.wordWrap": "wordWrapColumn",
+  "diffEditor.wordWrap": "off",
+  "editor.wordWrapColumn": 500
+}
