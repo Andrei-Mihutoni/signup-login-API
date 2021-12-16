@@ -8,5 +8,8 @@
     <title><?= $_title ?? 'Company' ?></title>
     <link rel="stylesheet" href="../css/app.css">
 </head>
-
-<body>
+<header>
+    <nav>
+        <a href="logout.php">Logout</a>
+    </nav>
+</header>

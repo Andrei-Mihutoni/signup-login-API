@@ -54,6 +54,10 @@ try {
   // Success
   session_start();
   $_SESSION['first_name'] = $row['first_name'];
+  $_SESSION['last_name'] = $row['last_name'];
+  $_SESSION['email'] = $row['email'];
+  $_SESSION['phone_number'] = $row['phone_number'];
+  $_SESSION['userId'] = $row['userId'];
   _res(200, ['info' => 'Login successful']);
 } catch (Exception $ex) {
   _res(500, ['info' => 'system under maintainance', 'error' => __LINE__]);

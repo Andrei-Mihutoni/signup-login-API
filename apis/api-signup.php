@@ -3,65 +3,36 @@ require_once(__DIR__ . '/../globals/globals.php');
 // include(__DIR__.'/../private/keys.php');
 
 
-// VALIDATE name
-if (!isset($_POST['first_name'])) {
-  send_400('first name is required');
-}  //check if the name is passed
-if (strlen($_POST['first_name']) < 2) {
-  send_400('first name must have minimum 2 characters');
-}   // check if the name contain at least 2 character
-if (strlen($_POST['first_name']) > 30) {
-  send_400('first name must have maximum 30 characters');
+// VALIDATE first name
+if (!isset($_POST['first_name'])) {send_400('first name is required');}  //check if the name is passed
+if (strlen($_POST['first_name']) < 2) {send_400('first name must have minimum 2 characters');}   // check if the name contain at least 2 character
+if (strlen($_POST['first_name']) > 30) {send_400('first name must have maximum 30 characters');
 }   // check if the name contain at least 2 character
 
 // VALIDATE last_name
-if (!isset($_POST['last_name'])) {
-  send_400('last name is required');
-}  //check if the last_name is passed
-if (strlen($_POST['last_name']) < 2) {
-  send_400('last name must have minimum 2 characters');
-}   // check if the last_name contain at least 2 character
-if (strlen($_POST['last_name']) > 15) {
-  send_400('last name must have maximum 15 characters');
-}      // check if the last_name contain at least 2 character
+if (!isset($_POST['last_name'])) {send_400('last name is required');}  //check if the last_name is passed
+if (strlen($_POST['last_name']) < 2) {send_400('last name must have minimum 2 characters');}   // check if the last_name contain at least 2 character
+if (strlen($_POST['last_name']) > 15) {send_400('last name must have maximum 15 characters');}      // check if the last_name contain at least 2 character
 
 // VALIDATE email
-if (!isset($_POST['email'])) {
-  send_400('email is required');
-}
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  send_400('email is invalid');
-}
-
-// VALIDATE password
-if (!isset($_POST['password'])) {
-  _res(400, ['info' => 'password required']);
-};
-if (strlen($_POST['password']) < _PASSW0RD_MIN_LEN) {
-  _res(400, ['info' => 'password too short. Password length shoud be minimum ' . _PASSW0RD_MIN_LEN . ' charachetrs']);
-};
-if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {
-  _res(400, ['info' => 'password too long.  Password length shoud be maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);
-};
+if (!isset($_POST['email'])) {send_400('email is required');}
+if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {send_400('email is invalid');}
 
 // VALIDATE phone_number
-if (!isset($_POST['phone_number'])) {
-  _res(400, ['info' => 'phone number required']);
-};
-if (strlen($_POST['phone_number']) < 8) {
-  _res(400, ['info' => 'phone number too short. Phone number length shoud be minimum 8 digits']);
-};
-if (strlen($_POST['phone_number']) > 8) {
-  _res(400, ['info' => 'phone number too long. Phone number length shoud be maximum 8 digits']);
+if (!isset($_POST['phone_number'])) {_res(400, ['info' => 'phone number required']);};
+if (strlen($_POST['phone_number']) < 8) {_res(400, ['info' => 'phone number too short. Phone number length shoud be minimum 8 digits']);};
+if (strlen($_POST['phone_number']) > 8) {_res(400, ['info' => 'phone number too long. Phone number length shoud be maximum 8 digits']);
 };
 
+// VALIDATE password
+if (!isset($_POST['password'])) {_res(400, ['info' => 'password required']);};
+if (strlen($_POST['password']) < _PASSW0RD_MIN_LEN) {_res(400, ['info' => 'password too short. Password length shoud be minimum ' . _PASSW0RD_MIN_LEN . ' charachetrs']);};
+if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {_res(400, ['info' => 'password too long.  Password length shoud be maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);};
+
+
 // VALIDATE re-password
-if (!isset($_POST['re-password'])) {
-  _res(400, ['info' => 're-password required']);
-};
-if (($_POST['re-password'] !== $_POST['password'])) {
-  _res(400, ['info' => 'passwords do not match']);
-};
+if (!isset($_POST['re-password'])) {_res(400, ['info' => 're-password required']);};
+if (($_POST['re-password'] !== $_POST['password'])) {_res(400, ['info' => 'passwords do not match']);};
 
 // Connect to DB
 // $db = require_once(__DIR__.'/../globals/db.php');
