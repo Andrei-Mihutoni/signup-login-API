@@ -33,6 +33,7 @@ if (!isset($_SESSION['first_name'])) {
             <a href="upload-item.php">Upload item</a>
             <a href="user-profile.php">Profile</a>
             <a href="update-user.php">Update Profile</a>
+            <a href="vendor-shop.php">Vendor shop</a>
         </header>
 
         <?php

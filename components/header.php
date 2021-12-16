@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=h1, initial-scale=1.0">
     <title><?= $_title ?? 'Company' ?></title>
     <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <header>
     <nav>
