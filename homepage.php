@@ -1,62 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="../css/homepage.css">
-</head>
 <?php
 session_start();
 if (!isset($_SESSION['first_name'])) {
     header('Location: login.php');
     exit();
 }
-// $_title = 'Welcome';
-// require_once(__DIR__ . '/components/header.php');
+$_title = 'Amazon';
+require_once(__DIR__ . '/components/header.php');
+echo '<h1> Welcome </h1> ', $_SESSION['first_name'];
 ?>
 
 <body>
-
     <main>
-        <header>
-            <nav>
-                <a href="logout.php">Logout</a>
-            </nav>
-            <h1>
-                <?php
-                echo 'Welcome ', $_SESSION['first_name'];
-                ?>
-            </h1>
-            <a href="upload-item.php">Upload item</a>
-            <a href="user-profile.php">Profile</a>
-            <a href="update-user.php">Update Profile</a>
-            <a href="vendor-shop.php">Vendor shop</a>
-        </header>
-
-        <?php
-        require_once(__DIR__ . '/globals/globals.php');
-        // Connect to DB
-        $db = _db();
-        try {
-
-            // Get data in the DB
-            $query = $db->prepare('SELECT * FROM items');
-            $query->execute();
-            $itemsData = $query->fetchAll();
-
-            // SUCCESS
-            // $response = ["info" => "Account updated"];
-            // echo json_encode($response);
-        } catch (Exception $ex) {
-            http_response_code(500);
-            echo 'System under maintainance';
-            echo $ex;
-            exit();
-        }
-        ?>
+        <?php require_once(__DIR__ . '/globals/fetch-items.php'); ?>
 
         <div class="row">
             <?php foreach ($itemsData as $item) : ?>
@@ -79,5 +34,3 @@ if (!isset($_SESSION['first_name'])) {
 </body>
 
 </html>
-
-

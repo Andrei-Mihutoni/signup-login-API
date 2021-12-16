@@ -4,16 +4,12 @@ require_once(__DIR__ . '/components/header.php');
 ?>
 
 <body>
-  <!-- <h1>Login</h1>
-    <form onsubmit="return false">
-    <input name="email" type="text" placeholder="email">
-    <input name="password" type="password" placeholder="password">
-    <button onclick="login()">Login</button>
-    </form> -->
-
   <main id="login-main">
     <section id="form-section" class="form-section">
-      <div class="logo"></div>
+      <div class="logo">
+        <!-- <img id="amazon-logo" src="media/amazon_logo.png" alt="amazon logo"> -->
+
+      </div>
 
       <fieldset id="form-group" class="form-fieldset">
         <form id="form-login" class="form-group" onsubmit="return false">
@@ -32,15 +28,11 @@ require_once(__DIR__ . '/components/header.php');
         <div id="legalTextRow" class="a-row">
           By creating an account, you agree to Amazon's <a href="/gp/help/customer/display.html/ref=ap_register_notification_condition_of_use?ie=UTF8&amp;nodeId=508088">Conditions of Use</a> and <a href="/gp/help/customer/display.html/ref=ap_register_notification_privacy_notice?ie=UTF8&amp;nodeId=468496">Privacy Notice</a>.
         </div>
-
-
-
         <div class="a-row">
           Don't have an account?
           <a class="a-link-emphasis" href="signup.php">
             Sign up
           </a>
-
           <div class="a-row">
             Forgot your password?
             <a class="a-link-emphasis" href="pwd_reset_send_email.php">
@@ -54,12 +46,6 @@ require_once(__DIR__ . '/components/header.php');
 
 
   </main>
-
-
-
-
-
-
 
   <script>
     async function login() {

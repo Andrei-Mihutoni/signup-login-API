@@ -1,5 +1,10 @@
 <?php
-$_title = 'Reset pasword';
+session_start();
+if (!isset($_SESSION['first_name'])) {
+  header('Location: login.php');
+  exit();
+}
+$_title = 'Email for reset password';
 require_once(__DIR__ . '/components/header.php');
 ?>
 

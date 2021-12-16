@@ -5,15 +5,12 @@
   margin: 0px;
 }
 
-/* #items-container {
-  padding: 10px;
-} */
-
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 header {
   margin-right: auto;
 }

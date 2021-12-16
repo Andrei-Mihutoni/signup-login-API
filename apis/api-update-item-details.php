@@ -15,7 +15,15 @@ if(!isset($_POST['item_description'])){ http_response_code(400); echo 'item_desc
 if(!isset($_POST['item_price'])){ http_response_code(400); echo 'item_price required'; exit(); };
 if(!isset($_FILES['item_image'])){ http_response_code(400); echo 'item_image required'; exit(); };
 
-  // Validate image extension
+if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ http_response_code(400); echo 'item_name min '._ITEM_NAME_MIN_LEN.' characters'; exit(); };
+if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ http_response_code(400); echo 'item_name min '._ITEM_NAME_MIN_LEN.' characters'; exit(); };
+if(strlen($_POST['item_name']) > _ITEM_NAME_MAX_LEN){ http_response_code(400); echo 'item_name max '._ITEM_NAME_MAX_LEN.' characters'; exit(); };
+if(strlen($_POST['item_description']) < _ITEM_DESCRIPTION_MIN_LEN){ http_response_code(400); echo 'item_description min '._ITEM_DESCRIPTION_MIN_LEN.' characters'; exit(); };
+if(strlen($_POST['item_description']) > _ITEM_DESCRIPTION_MAX_LEN){ http_response_code(400); echo 'item_description max '._ITEM_DESCRIPTION_MAX_LEN.' characters'; exit(); };
+if(strlen($_POST['item_price']) < _ITEM_PRICE_MIN_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MIN_LEN.' characters'; exit(); };
+if(strlen($_POST['item_price']) > _ITEM_PRICE_MAX_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MAX_LEN.' characters'; exit(); };
+  
+// Validate image extension
 $extension = pathinfo($_FILES['item_image']['name'], PATHINFO_EXTENSION);
 $allowedExtensions = ['png', 'gif', 'jpg', 'jpeg','webp'];
 if(!in_array($extension, $allowedExtensions )){
@@ -31,13 +39,6 @@ $uniqueImageName = bin2hex((random_bytes(16)));   // 32 characters
 $uniqueImageName .= ".".$extension;
 
 
-if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ http_response_code(400); echo 'item_name min '._ITEM_NAME_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ http_response_code(400); echo 'item_name min '._ITEM_NAME_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_name']) > _ITEM_NAME_MAX_LEN){ http_response_code(400); echo 'item_name max '._ITEM_NAME_MAX_LEN.' characters'; exit(); };
-if(strlen($_POST['item_description']) < _ITEM_DESCRIPTION_MIN_LEN){ http_response_code(400); echo 'item_description min '._ITEM_DESCRIPTION_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_description']) > _ITEM_DESCRIPTION_MAX_LEN){ http_response_code(400); echo 'item_description max '._ITEM_DESCRIPTION_MAX_LEN.' characters'; exit(); };
-if(strlen($_POST['item_price']) < _ITEM_PRICE_MIN_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_price']) > _ITEM_PRICE_MAX_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MAX_LEN.' characters'; exit(); };
 
 // Connect to the database
 $db = _db();

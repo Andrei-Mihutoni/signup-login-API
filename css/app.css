@@ -17,7 +17,6 @@
   display: flex;
   justify-content: center;
   margin-top: 35px;
-  /* background-color: hotpink; */
 }
 
 h1 {
@@ -53,19 +52,19 @@ h1 {
   align-items: center;
 }
 
-/* .logo {
-  width: 150px;
+.logo {
+  width: 155px;
   background-image: url(https://m.media-amazon.com/images/S/sash/mPGmT0r6IeTyIee.png);
-  background-position: -5px -130px;
+  background-position: -3px -117px;
   height: 50px;
-  width: 103px;
+  width: 107px;
   margin-bottom: 20px;
-} */
+}
 
-/* #amazon-logo {
-  max-width: 100%;
+#amazon-logo {
+  max-width: 200px;
   height: auto;
-} */
+}
 
 fieldset {
   width: 100%;

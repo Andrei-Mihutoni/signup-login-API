@@ -1,8 +1,14 @@
 <?php
-$_title = 'Signup';
-require_once(__DIR__ . '/components/header.php');
 session_start();
+if (!isset($_SESSION['first_name'])) {
+    header('Location: login.php');
+    exit();
+}
+$_title = 'Update profile';
+require_once(__DIR__ . '/components/header.php');
 ?>
+
+
 
 <main id="update-main" class="update-main">
     <section id="form-section" class="form-section">
@@ -29,12 +35,6 @@ session_start();
                 <label for="email">Email: <?= ($_SESSION['email']) ?></label>
                 <h6>new email:</h6>
                 <input name="email" type="email" placeholder="" pattern=""></input>
-
-                <!-- <label for="password">Password</label>
-                <input name="password" type="password" minlength="6" maxlength="20" placeholder="At least 6 characters"></input>
-
-                <label for="re-password">Re-enter password</label>
-                <input name="re-password" type="password" minlength="6" maxlength="20" placeholder=""></input> -->
 
                 <button id="signup-btn" class="yellow-btn" onclick="updateProfile()">Update</button>
             </form>
@@ -72,5 +72,4 @@ session_start();
 
 <?php
 require_once(__DIR__ . '/components/footer.php');
-
 ?>

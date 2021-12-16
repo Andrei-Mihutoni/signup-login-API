@@ -1,8 +1,13 @@
 <?php
-// require_once(__DIR__ . '/components/session.php');
-$_title = 'Upload Item';
-require_once(__DIR__ . '/components/header.php');
+// session_start();
+// if (!isset($_SESSION['first_name'])) {
+//   header('Location: login.php');
+//   exit();
+// }
+// $_title = 'Upload item';
+// require_once(__DIR__ . '/components/header.php');
 ?>
+
 
 <body>
   <main>
@@ -46,7 +51,7 @@ require_once(__DIR__ . '/components/header.php');
 
 
 
-  <script src="validator.js"></script>
+  <script src="./scripts/validator.js"></script>
   <script>
     async function upload_item() {
       try {
@@ -59,7 +64,7 @@ require_once(__DIR__ . '/components/header.php');
         let response = await conn.json()
         // console.log(response)
         // document.querySelector("#response").textContent = response.info;
-        location.reload(); 
+        location.reload();
       } catch (err) {
         console.error(err);
         alert("Please fill in all the item details");
