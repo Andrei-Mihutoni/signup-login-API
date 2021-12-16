@@ -105,7 +105,6 @@ fieldset {
 }
 
 .form-input-name-group {
-  background-color: hotpink;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
