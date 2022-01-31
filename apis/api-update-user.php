@@ -32,9 +32,9 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {send_400('email is inv
 $db = _db();
 
 try{
-
     session_start();
     $userId = ($_SESSION['userId']);
+    // $userId = $_POST['userId'];
 
     // Insert data in the DB
     $query = $db->prepare('UPDATE users SET first_name=:first_name, last_name=:last_name, phone_number=:phone_number, email=:email WHERE userId = :userId');
@@ -42,8 +42,8 @@ try{
     $query->bindValue(":last_name", $_POST['last_name']);
     $query->bindValue(":phone_number", $_POST['phone_number']);
     $query->bindValue(":email", $_POST['email']);
-    // $query->bindValue(":userId" , $_GET['userId']);
     $query->bindValue(":userId" , $userId);
+    // $query->bindValue(":userId" , $_POST['userId']);
     $query->execute();
 
     if(!$query->rowCount()){
@@ -51,8 +51,10 @@ try{
         exit();
     }
     // SUCCESS
-    // $response = ["info" => "Account updated"];
+    $response = ["info" => "Account updated. Please log in again."];
     echo json_encode($response);
+    session_destroy();
+    session_start();
 } catch (Exception $ex) {
     http_response_code(500);
     echo 'System under maintainance';

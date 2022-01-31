@@ -9,11 +9,29 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: hotpink; */
 }
 
 header {
   margin-right: auto;
 }
+
+h3 {
+  color: black;
+}
+
+h4 {
+  font-size: 0.8rem;
+  color: rgb(88, 88, 88);
+}
+
+.price-span {
+  /* margin-left: 60%; */
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgb(82, 82, 82);
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -24,7 +42,7 @@ header {
 
 #item-card {
   /* background-color: hotpink; */
-  border: 1px solid grey;
+  border: 1px solid rgb(199, 199, 199);
   width: 200px;
   height: 300px;
   margin: 1rem;
@@ -32,16 +50,10 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 #item-card * + * {
   margin-top: 5px;
-}
-
-.item-image {
-  width: 180px;
-  max-width: 180px;
-  height: auto;
 }
 
 #upload-item-form {
@@ -51,6 +63,35 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.item-link {
+  height: 100%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+
+  position: relative;
+}
+
+.item-image {
+  width: 180px;
+  /* max-width: 180px;
+  height: auto;
+  margin-left: 25%; */
+}
+/* .item-link img {
+  max-width: 100px;
+  height: auto;
+} */
+
+.item-details {
+  /* align-self: flex-end; */
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 150px;
+  /* text-align: center; */
 }
 
 #upload-item-form * {
@@ -97,4 +138,12 @@ header {
   );
 
   border-color: #a88734 #9c7e31 #846a29;
+}
+
+.a-row > a.like-btn {
+  color: rgb(0, 31, 116);
+  background-color: rgb(238, 238, 238);
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+  padding: 5px;
 }

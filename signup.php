@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/app.css">
-  <title>Sign up</title>
-</head>
+<?php
+$_title = 'Sign up';
+require_once(__DIR__ . '/components/header-logged-out.php');
+?>
 
 <body>
   <main id="signup-main" class="signup-main">
@@ -43,14 +37,14 @@
         </form>
 
         <div id="legalTextRow" class="a-row">
-          By creating an account, you agree to Amazon's <a href="/gp/help/customer/display.html/ref=ap_register_notification_condition_of_use?ie=UTF8&amp;nodeId=508088">Conditions of Use</a> and <a href="/gp/help/customer/display.html/ref=ap_register_notification_privacy_notice?ie=UTF8&amp;nodeId=468496">Privacy Notice</a>.
+          By creating an account, you agree to Amazon's <a href="login.php">Privacy Notice</a>.
         </div>
 
 
 
         <div class="a-row">
           Already have an account?
-          <a class="a-link-emphasis" href="login.php">
+          <a class="bold a-link-emphasis" href="login.php">
             Login
           </a>
         </div>

@@ -2,34 +2,16 @@
 
 require_once(__DIR__ . '/../globals/globals.php');
 
-
 // Validate the email
-if (!isset($_POST['email'])) {
-  _res(400, ['info' => 'email is required']);
-};
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  _res(400, ['info' => 'typed email is invalid', 'error on line' => __LINE__]);
-};
-
+if (!isset($_POST['email'])) {_res(400, ['info' => 'email is required']);};
+if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {res(400, ['info' => 'typed email is invalid', 'error on line' => __LINE__]);};
 
 // Validate the password
-if (!isset($_POST['password'])) {
-  _res(400, ['info' => 'Password is required. Please type your password.']);
-};
-if (strlen($_POST['password']) < _PASSW0RD_REQUIRED) {
-  _res(400, ['info' => 'Password is required. Please type your password.']);
-};
-if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {
-  _res(400, ['info' => 'Password too long. Password length shoud be Maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);
-};
-
-
-
-
+if (!isset($_POST['password'])) {_res(400, ['info' => 'Password is required. Please type your password.']);};
+if (strlen($_POST['password']) < _PASSW0RD_REQUIRED) {_res(400, ['info' => 'Password is required. Please type your password.']);};
+if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {_res(400, ['info' => 'Password too long. Password length shoud be Maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);};
 
 $db = _db();
-
-
 try {
   $query = $db->prepare('SELECT * FROM users WHERE email = :email ');
   $query->bindValue(':email', $_POST['email']);
@@ -37,19 +19,13 @@ try {
   $row = $query->fetch();
   // echo json_encode($row);
 
-  if (!$row) {
-    _res(400, ['info' => 'wrong credentials', 'error line' => __LINE__]);
-  }
+  if (!$row) {_res(400, ['info' => 'wrong credentials', 'error line' => __LINE__]);}
 
   // Password hash verify
-  if (!password_verify($_POST['password'], $row['password'])) {
-    _res(400, ['info' => "Wrong password", 'error line' => __LINE__]);
-  };
+  if (!password_verify($_POST['password'], $row['password'])) {_res(400, ['info' => "Wrong password", 'error line' => __LINE__]);};
 
   // Check if the user's email is verified
-  if ($row['verified'] != 1) {
-    _res(400, ['info' => 'User email is not verified. Please check your email and click the verification link.']);
-  };
+  if ($row['verified'] != 1) {_res(400, ['info' => 'User email is not verified. Please check your email and click the verification link.']);};
 
   // Success
   session_start();

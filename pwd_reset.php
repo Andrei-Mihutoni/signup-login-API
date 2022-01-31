@@ -1,10 +1,8 @@
 <?php
+
 $_title = 'Reset pasword';
-require_once(__DIR__ . '/components/header.php');
-?>
-
-
-<?php
+require_once(__DIR__ . '/components/header-logged-out.php');
+session_start();
 
 //  Verify the key (must be 32 characters)
 if (!isset($_GET['pwd_reset_key'])) {
@@ -37,22 +35,17 @@ try {
   exit();
 }
 
-
-
-
-
-/// ######   TO DO 
-
 // Connect to DB
 $db = _db();
 
 try {
-  // Checks the password from DB against the one from the mail
-  $query = $db->prepare(' SELECT * FROM users');
+  // Checks the reset password key from DB against the one from the mail
+  $query = $db->prepare('SELECT * FROM users WHERE email = :email');
+  $query->bindValue(':email', $_SESSION['email']);
   $query->execute();
   $row = $query->fetch();
   // echo json_encode($row['pwd_reset_key']);
-  // echo json_encode($_GET['pwd_reset_key']);
+
   if ($row['pwd_reset_key'] !== $_GET['pwd_reset_key']) {
     echo "mmm... it looks like you are tring to reset your password from an old email.  If you still need to reset your password, <a href='http://localhost/pwd_reset_send_email.php'> 
     Click here. 
@@ -65,16 +58,10 @@ try {
   echo $ex;
   exit();
 }
-
-
-
 ?>
 
 
-
 <body>
-
-
   <main id="login-main">
     <section id="form-section" class="form-section">
       <div class="logo"></div>
@@ -98,17 +85,11 @@ try {
 
           <button id="signup-btn" class="yellow-btn nav-action-button" onclick="reset_pwd()">Continue</button>
         </form>
-
-
-
-
-
         <div class="a-row">
           Dont't have an account?
           <a class="a-link-emphasis" href="signup.php">
             Sign-up
           </a>
-
         </div>
         <div class="a-row">
           Already have an account?
@@ -117,17 +98,8 @@ try {
           </a>
         </div>
       </fieldset>
-
     </section>
-
-
-
   </main>
-
-
-
-
-
 
 
   <script>

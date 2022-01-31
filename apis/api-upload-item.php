@@ -2,17 +2,17 @@
 require_once(__DIR__ . '/../globals/globals.php');
 
 // Validate the item details
-if(!isset($_POST['item_name'])){ http_response_code(400); echo 'item_name required'; exit(); };
-if(!isset($_POST['item_description'])){ http_response_code(400); echo 'item_description required'; exit(); };
-if(!isset($_POST['item_price'])){ http_response_code(400); echo 'item_price required'; exit(); };
-if(!isset($_FILES['item_image'])){ http_response_code(400); echo 'item_image required'; exit(); };
+if(!isset($_POST['item_name'])) {send_400('item_name required');};
+if(!isset($_POST['item_description'])) {send_400('item_description required');};
+if(!isset($_POST['item_price'])) {send_400('item_price required');};
+if(!isset($_FILES['item_image'])) {send_400('item_image required');};
 
-if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ http_response_code(400); echo 'item_name min '._ITEM_NAME_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_name']) > _ITEM_NAME_MAX_LEN){ http_response_code(400); echo 'item_name max '._ITEM_NAME_MAX_LEN.' characters'; exit(); };
-if(strlen($_POST['item_description']) < _ITEM_DESCRIPTION_MIN_LEN){ http_response_code(400); echo 'item_description min '._ITEM_DESCRIPTION_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_description']) > _ITEM_DESCRIPTION_MAX_LEN){ http_response_code(400); echo 'item_description max '._ITEM_DESCRIPTION_MAX_LEN.' characters'; exit(); };
-if(strlen($_POST['item_price']) < _ITEM_PRICE_MIN_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MIN_LEN.' characters'; exit(); };
-if(strlen($_POST['item_price']) > _ITEM_PRICE_MAX_LEN){ http_response_code(400); echo 'item_price min '._ITEM_PRICE_MAX_LEN.' characters'; exit(); };
+if(strlen($_POST['item_name']) < _ITEM_NAME_MIN_LEN){ send_400('item_name must be min '._ITEM_NAME_MIN_LEN.' characters'); };
+if(strlen($_POST['item_name']) > _ITEM_NAME_MAX_LEN){ send_400('item_name must be max '._ITEM_NAME_MAX_LEN.' characters'); };
+if(strlen($_POST['item_description']) < _ITEM_DESCRIPTION_MIN_LEN){ send_400('item_description must be min '._ITEM_DESCRIPTION_MIN_LEN.' characters');};
+if(strlen($_POST['item_description']) > _ITEM_DESCRIPTION_MAX_LEN){ send_400('item_description must be max '._ITEM_DESCRIPTION_MAX_LEN.' characters'); };
+if(strlen($_POST['item_price']) < _ITEM_PRICE_MIN_LEN){ send_400('item_price must be min '._ITEM_PRICE_MIN_LEN.' characters'); };
+if(strlen($_POST['item_price']) > _ITEM_PRICE_MAX_LEN){ send_400('item_price must be max '._ITEM_PRICE_MAX_LEN.' characters'); };
 
 
 // var_dump($_FILES['item_image']);
@@ -29,8 +29,8 @@ if(!in_array($extension, $allowedExtensions )){
 };    
 
 // Validate image size
-if ($_FILES['item_image']['size'] < _ITEM_IMAGE_MIN_SIZE){ http_response_code(400); echo 'item_image size is to small. Minumum size: '. _ITEM_IMAGE_MIN_SIZE / 1000000 . 'mb'; exit(); };
-if ($_FILES['item_image']['size'] > _ITEM_IMAGE_MAX_SIZE){ http_response_code(400); echo 'item_image size is to big. Maximum size: '. _ITEM_IMAGE_MAX_SIZE / 1000000  . 'mb'; exit(); };
+if ($_FILES['item_image']['size'] < _ITEM_IMAGE_MIN_SIZE){ send_400( 'item_image size is to small. Minumum size: '. _ITEM_IMAGE_MIN_SIZE / 1000000 . 'mb'); };
+if ($_FILES['item_image']['size'] > _ITEM_IMAGE_MAX_SIZE){ send_400( 'item_image size is to big. Maximum size: '. _ITEM_IMAGE_MAX_SIZE / 1000000  . 'mb'); };
 
 // unique name for the image  
 $uniqueImageName = bin2hex((random_bytes(16)));   // 32 characters
@@ -54,15 +54,26 @@ try{
   // move the temporal image to the final destination
   $destinationFolder = __DIR__.'/../media/items_images/';
   $finalPath = $destinationFolder.$uniqueImageName;
+  // echo $finalPath;
   move_uploaded_file($_FILES['item_image']['tmp_name'], $finalPath);
 
   // Success
-  // $response = ["info" => "Item successfuly uploaded", "itemID" => $item_id];
   $response = ["info" => "Item successfuly uploaded", "itemID" => $item_id];
   echo json_encode($response);
  
 }catch(Exception $ex){
   http_response_code(500);
   echo 'System under maintainance '.__LINE__;
+  exit();
+}
+
+
+// function to manage responding in case of an error
+function send_400($error_message)
+{
+  header('Content-Type: application/json');
+  http_response_code(400);
+  $response = ["info" => $error_message];
+  echo json_encode($response);
   exit();
 }

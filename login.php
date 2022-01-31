@@ -1,6 +1,6 @@
 <?php
 $_title = 'Login';
-require_once(__DIR__ . '/components/header.php');
+require_once(__DIR__ . '/components/header-logged-out.php');
 ?>
 
 <body>
@@ -26,25 +26,22 @@ require_once(__DIR__ . '/components/header.php');
         </form>
 
         <div id="legalTextRow" class="a-row">
-          By creating an account, you agree to Amazon's <a href="/gp/help/customer/display.html/ref=ap_register_notification_condition_of_use?ie=UTF8&amp;nodeId=508088">Conditions of Use</a> and <a href="/gp/help/customer/display.html/ref=ap_register_notification_privacy_notice?ie=UTF8&amp;nodeId=468496">Privacy Notice</a>.
+          By creating an account, you agree to Amazon's <a href="login.php">Privacy Notice</a>.
         </div>
-        <div class="a-row">
+        <div class=" a-row">
           Don't have an account?
-          <a class="a-link-emphasis" href="signup.php">
+          <a class="bold a-link-emphasis" href="signup.php">
             Sign up
           </a>
           <div class="a-row">
             Forgot your password?
-            <a class="a-link-emphasis" href="pwd_reset_send_email.php">
+            <a class=" bold a-link-emphasis" href="pwd_reset_send_email.php">
               Click here
             </a>
           </div>
       </fieldset>
 
     </section>
-
-
-
   </main>
 
   <script>

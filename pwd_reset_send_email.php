@@ -1,12 +1,14 @@
 <?php
-session_start();
-if (!isset($_SESSION['first_name'])) {
-  header('Location: login.php');
-  exit();
-}
+// session_start();
+// if (!isset($_SESSION['first_name'])) {
+//   header('Location: login.php');
+//   exit();
+// }
 $_title = 'Email for reset password';
-require_once(__DIR__ . '/components/header.php');
+require_once(__DIR__ . '/components/header-logged-out.php');
+
 ?>
+
 
 <body>
   <!-- ######### TO DO - frontend validation -->

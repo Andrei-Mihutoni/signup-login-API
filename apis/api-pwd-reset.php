@@ -1,39 +1,22 @@
 <?php
 require_once(__DIR__ . '/../globals/globals.php');
 
-
-
 // VALIDATE email
-if (!isset($_POST['email'])) {
-  send_400('email is required');
-}
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  send_400('email is invalid');
-}
+if (!isset($_POST['email'])) {send_400('email is required');}
+if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {send_400('email is invalid');}
 
 // VALIDATE password
-if (!isset($_POST['password'])) {
-  send_400('new password is required');
-}
-if (strlen($_POST['password']) < _PASSW0RD_MIN_LEN) {
-  _res(400, ['info' => 'password too short. Password length shoud be minimum ' . _PASSW0RD_MIN_LEN . ' charachetrs']);
-};
-if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {
-  _res(400, ['info' => 'password too long.  Password length shoud be Maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);
-};
+if (!isset($_POST['password'])) {send_400('new password is required');}
+if (strlen($_POST['password']) < _PASSW0RD_MIN_LEN) {_res(400, ['info' => 'password too short. Password length shoud be minimum ' . _PASSW0RD_MIN_LEN . ' charachetrs']);};
+if (strlen($_POST['password']) > _PASSW0RD_MAX_LEN) {_res(400, ['info' => 'password too long.  Password length shoud be Maximum ' . _PASSW0RD_MAX_LEN . ' charachetrs']);};
 
 // VALIDATE re-password
-if (!isset($_POST['re-password'])) {
-  _res(400, ['info' => 're-password required']);
-};
-if (($_POST['re-password'] !== $_POST['password'])) {
-  _res(400, ['info' => 'passwords do not match']);
-};
+if (!isset($_POST['re-password'])) {_res(400, ['info' => 're-password required']);};
+if (($_POST['re-password'] !== $_POST['password'])) {_res(400, ['info' => 'passwords do not match']);};
 
 
 // Connect to DB
 $db = _db();
-
 
 try {
   $db->beginTransaction();
@@ -65,7 +48,6 @@ try {
 
 
 try {
-
   // // Select the matching mail from the DB
   $query = $db->prepare(' SELECT * FROM users  WHERE email = :email');
   $query->bindValue(':email', $_POST['email']);
@@ -82,8 +64,6 @@ try {
   echo $ex;
   exit();
 }
-
-
 
 
 

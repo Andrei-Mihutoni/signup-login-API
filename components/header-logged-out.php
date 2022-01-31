@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['first_name'])) {
-    header('Location: login.php');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,16 +7,14 @@ if (!isset($_SESSION['first_name'])) {
     <meta name="viewport" content="width=h1, initial-scale=1.0">
     <title><?= $_title ?? 'Company' ?></title>
     <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
-    <link rel="stylesheet" href="./css/homepage.css">
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/profile-page.css">
     <link rel="stylesheet" href="./css/forms.css">
-    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    
 </head>
 
 
-
 <header>
+
     <nav id="topNav">
         <div id="top-nav-left">
             <div id="logo-topnav">
@@ -50,9 +40,7 @@ if (!isset($_SESSION['first_name'])) {
         <div id="top-nav-right">
             <ul>
                 <li class="min-width">
-                    <a href="user-profile.php">
-                        <p>Hello, <?= $_SESSION['first_name'] ?></p>
-                        <p class="bold">Account profile</p>
+                    <a href="user-profile.php">Hello there
                     </a>
 
                 </li>
@@ -70,11 +58,34 @@ if (!isset($_SESSION['first_name'])) {
             </ul>
         </div>
     </nav>
-    <nav id="bottomNav">
+
+
+
+
+    <!-- 
+    <nav id="top-nav-bar">
+        <div id="logo-nav-bar">
+            <img src="/media/amazon_logo.png" alt="">
+        </div>
+        <div id="deliver-nav">
+            <p>Deliver to Denmark</p>
+            <p>Copenhagen 2300</p>
+        </div>
+        
         <a href="homepage.php">Home</a>
-        <!-- <a href="upload-item.php">Upload item</a> -->
-        <a href="vendor-shop.php">Vendor shop</a>
+        <a href="upload-item.php">Upload item</a>
         <a href="user-profile.php">Profile</a>
-        <a id="logout-a" href="logout.php">Logout</a>
-    </nav>
+        <a href="vendor-shop.php">Vendor shop</a>
+        <a href="logout.php">Logout</a>
+    </nav> -->
+
+
+    <!-- <nav id="top-nav-bar">
+        <a href="homepage.php">Home</a>
+        <a href="upload-item.php">Upload item</a>
+        <a href="user-profile.php">Profile</a>
+        <a href="update-user.php">Update Profile</a>
+        <a href="vendor-shop.php">Vendor shop</a>
+        <a href="logout.php">Logout</a>
+    </nav> -->
 </header>

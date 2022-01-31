@@ -1,0 +1,23 @@
+#profile-group {
+  border: 1px solid grey;
+  padding: 1rem;
+}
+
+#profile-group * + * {
+  margin-top: 1rem;
+  font-weight: 600;
+  display: flex;
+}
+
+#profile-group span {
+  font-weight: 400;
+  margin-left: 1rem;
+}
+
+#profile-group div:first-of-type {
+  margin-top: 2rem;
+}
+
+.a-row a {
+  margin-left: 0.5rem;
+}

@@ -7,158 +7,47 @@
   margin: 0px;
 }
 
-/* body {
-  color: hotpink;
-  background-color: hotpink;
-} */
-
-#signup-main,
-#login-main {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-}
-
 h1 {
   font-weight: 400;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
-.flex-inline {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 1rem;
+ul {
+  list-style-type: none;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+}
+
+.bold {
+  font-weight: 700;
+}
+p {
+  font-weight: 200;
+}
+
+#refresh-vendor {
+  margin: 1rem 0 0 0;
+  padding: 0.5rem;
 }
 
 #index-signin-group {
+  /* background-color: hotpink; */
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  margin-left: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .white-span {
-  margin-top: 5px;
   color: white;
-  font-weight: 500;
+  margin-top: 0.4rem;
 }
-
-/* signup */
-
-.form-section {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo {
-  width: 155px;
-  background-image: url(https://m.media-amazon.com/images/S/sash/mPGmT0r6IeTyIee.png);
-  background-position: -3px -117px;
-  height: 50px;
-  width: 107px;
-  margin-bottom: 20px;
-}
-
-#amazon-logo {
-  max-width: 200px;
-  height: auto;
-}
-
-fieldset {
-  width: 100%;
-  border: 1px solid rgb(201, 201, 201);
-  border-radius: 4px;
-  position: relative;
-  padding: 14px 18px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  border-radius: 4px;
-  /* padding: 14px 18px; */
-}
-
-#form-sign-up label,
-#form-login label {
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-#form-sign-up input,
-#form-login input {
-  background-color: #fff;
-  height: 31px;
-  padding: 3px 7px;
-  line-height: normal;
-  border: 1px solid #a6a6a6;
-  border-top-color: #949494;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
-  outline: 0;
-}
-
-.form-input-name-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.yellow-btn {
-  margin-top: 20px;
-  padding: 7px;
-  letter-spacing: 1px;
-  border: 1px solid #a88734;
-  border-radius: 3px;
-  color: inherit;
-  cursor: pointer;
-  background: none;
-  background: rgb(247, 220, 156);
-  background: linear-gradient(
-    180deg,
-    rgba(247, 220, 156, 1) 0%,
-    rgba(255, 228, 162, 1) 12%,
-    rgba(241, 195, 81, 1) 61%
-  );
-
-  border-color: #a88734 #9c7e31 #846a29;
-}
-
-.yellow-btn:hover {
-  margin-top: 20px;
-  padding: 7px;
-  cursor: pointer;
-  background: rgb(227, 202, 144);
-  background: linear-gradient(
-    180deg,
-    rgba(227, 202, 144, 1) 0%,
-    rgba(235, 210, 148, 1) 12%,
-    rgba(219, 178, 75, 1) 61%
-  );
-  border-color: #a88734 #9c7e31 #846a29;
-}
-
-.a-row {
-  margin: 15px 5px;
-  font-size: 0.8rem;
-  font-weight: 100;
-}
-
-#response {
-  color: red;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  body {
-    background: black;
-    color: #ddd;
-  }
-  .yellow-btn {
-    color: black;
-  }
-} */

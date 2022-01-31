@@ -2,12 +2,10 @@
 require_once(__DIR__ . '/../globals/globals.php');
 // include(__DIR__.'/../private/keys.php');
 
-
 // VALIDATE first name
 if (!isset($_POST['first_name'])) {send_400('first name is required');}  //check if the name is passed
 if (strlen($_POST['first_name']) < 2) {send_400('first name must have minimum 2 characters');}   // check if the name contain at least 2 character
-if (strlen($_POST['first_name']) > 30) {send_400('first name must have maximum 30 characters');
-}   // check if the name contain at least 2 character
+if (strlen($_POST['first_name']) > 30) {send_400('first name must have maximum 30 characters');}   // check if the name contain at least 2 character
 
 // VALIDATE last_name
 if (!isset($_POST['last_name'])) {send_400('last name is required');}  //check if the last_name is passed
@@ -59,7 +57,6 @@ try {
   $query->execute();
   $userID = $db->lastinsertid();
 
-
   // SUCCESS
   $response = ["info" => "Account created. Please go to your email and verify it in order to log in.", "userID" => $userID];
   echo json_encode($response);
@@ -69,8 +66,6 @@ try {
   echo $ex;
   exit();
 }
-
-
 
 //SMS sent upon registration
 try {
@@ -98,21 +93,17 @@ try {
   echo "System under maintainance";
 }
 
-
-
 // Email verification
 $_subject = "Account email verification";
 $name = $_POST['first_name'];
 $_to_email = $_POST['email'];
-$_message = "Thanks for signing up. 
-      <a href='http://localhost/validate-user.php?key=$verification_key&name=$name'> 
+$_message = "Hello $name.
+      <br> Thanks for signing up. 
+      <br><a href='http://localhost/validate-user.php?key=$verification_key&name=$name'> 
          Click here to verify your account. 
       </a>";
 
 require_once(__DIR__ . "/../private/send_email.php");
-
-
-
 
 
 // function to manage responding in case of an error

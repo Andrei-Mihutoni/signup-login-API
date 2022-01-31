@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (!isset($_SESSION['first_name'])) {
-    header('Location: login.php');
-    exit();
-}
 $_title = 'Update profile';
 require_once(__DIR__ . '/components/header.php');
 ?>
@@ -63,8 +58,17 @@ require_once(__DIR__ . '/components/header.php');
             body: new FormData(document.querySelector("#form-sign-up"))
         })
         let response = await conn.json();
-        console.log(response);
+        // console.log(response);
         document.querySelector("#response").textContent = response.info;
+        if (conn.ok) {
+        setTimeout(() => {
+          {
+            location.href = "login.php"
+          }
+
+        }, 5000);
+
+      }
     }
 </script>
 

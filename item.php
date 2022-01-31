@@ -1,22 +1,17 @@
 <?php
-session_start();
-if (!isset($_SESSION['first_name'])) {
-    header('Location: login.php');
-    exit();
-}
 $_title = 'Item';
 require_once(__DIR__ . '/components/header.php');
 require_once(__DIR__ . '/globals/globals.php');
-
-
-session_start();
-$_SESSION['itemID'] = $_GET['id'];
 
 
 if (!isset($_GET['id'])) {
     echo "this article is missing. Please go back and try another one";
     exit();
 } else {
+    $_SESSION['itemID'] = $_GET['id'];
+    $_SESSION['img_name'] = $_GET['img_name'];
+    // echo $_SESSION['img_name'];
+
     // Connect to DB
     $db = _db();
     try {
@@ -27,9 +22,9 @@ if (!isset($_GET['id'])) {
         $itemData = $query->fetchAll();
 
         // SUCCESS
-        echo json_encode($itemData);
+        // echo json_encode($itemData);
 
-        // $response = ["info" => "Account updated"];
+        $response = ["info" => "Item refreshed"];
         // echo json_encode($response);
     } catch (Exception $ex) {
         http_response_code(500);
@@ -43,26 +38,28 @@ if (!isset($_GET['id'])) {
 <div class="row">
     <?php foreach ($itemData as $item) : ?>
         <div id="items-container">
-            <article id="item-card">
-
-                <img class="item-image" src="media/items_images/<?= $item['item_image_name']; ?>" alt="item image">
-                <h3><?= ($item['item_name']); ?></h3>
-                <h4><?= ($item['item_description']); ?></h4>
-                <h4><?= ($item['item_price']); ?> dkk</h4>
-                </a>
-            </article>
-        </div>
+                    <article id="item-card">
+                        <div class="item-link" href="item.php?id=<?= $item['item_id'] ?>&name=<?= $item['item_name'] ?>">
+                            <img class="item-image" src="media/items_images/<?= $item['item_image_name']; ?>" alt="item image">
+                            <div class="item-details">
+                            <h3><?= ($item['item_name']); ?></h3>
+                            <!-- <h4><?= ($item['item_description']); ?></h4> -->
+                            <h4><?= ($item['item_price']); ?> dkk</h4>
+                            </div>
+                        </div>
+                    </article>
+                </div>
     <?php endforeach; ?>
 </div>
 
 
 <main>
     <fieldset id="form-group" class="form-fieldset">
-        <!-- <form onsubmit="validate(upload_item); return false"> -->
-        <form id="upload-item-form" onsubmit="validate(update_item_details); return false">Update item
-            <div class="form-input-name-group">
+        <form id="upload-item-form" onsubmit="validate(update_item_details); return false"><strong>Fill up all the fields to update the item</strong>
+      <div id="response"></div> 
+        <div class="form-input-name-group">
                 <label for="item_name">New name</label>
-                <input name="item_name" type="text" data-validate="str" data-min="2" data-max="10" placeholder="min 2, max 10 characters" required>
+                <input name="item_name" type="text" data-validate="str" data-min="2" data-max="20" placeholder="min 2, max 20 characters" required>
             </div>
             <div class="form-input-name-group">
                 <label for="item_description">New description</label>
@@ -82,30 +79,32 @@ if (!isset($_GET['id'])) {
 
         </form>
     </fieldset>
-    
-  <script src="scripts/validator.js"></script>
+
+    <script src="./scripts/validator.js"></script>
     <script>
-    async function update_item_details() {
-      try {
-          const form = event.target.form
-          // console.log(form)
-          let conn = await fetch("../apis/api-update-item-details.php", {
-              method: "POST",
-              body: new FormData(form)
-            })
-            let response = await conn.json()
-            console.log(response)
-            // document.querySelector("#response").textContent = response.info;
-        } catch (err) {
-            // console.error(err);
-            // alert("Please fill in all the item details");
+        async function update_item_details() {
+            try {
+                const form = event.target.form
+                let conn = await fetch("../apis/api-update-item-details.php", {
+                    method: "POST",
+                    body: new FormData(form)
+                })
+                let response = await conn.json()
+                console.log(response)
+                document.querySelector("#response").textContent = response.info;
+                if(conn.status == 200){
+          setTimeout(() => {
+            // location.reload();
+            location.href="homepage.php";
+          }, 500);
         }
-        location.reload(); 
-        // location.href="homepage.php"; 
-    };
-
-
-  </script>
+            
+            } catch (err) {
+                console.error(err);
+                // alert("Please fill in all the item details");
+            }
+        };
+    </script>
 
 
 </main>

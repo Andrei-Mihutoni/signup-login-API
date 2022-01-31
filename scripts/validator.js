@@ -33,6 +33,7 @@ function validate(callback) {
         ) {
           element.classList.add("validate_error");
           element.style.backgroundColor = validate_error;
+          alert("hei");
         }
         break;
       case "email":

@@ -4,21 +4,14 @@ require_once(__DIR__ . '/../globals/globals.php');
 
 
 // VALIDATE email
-if (!isset($_POST['email'])) {
-  send_400('email is required');
-}
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  send_400('email is invalid');
-}
+if (!isset($_POST['email'])) {send_400('email is required');}
+if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {send_400('email is invalid');}
 
 
 // Connect to DB
 $db = _db();
 
-
-
 try {
-
   // Select the matching mail from the DB
   $query = $db->prepare(' SELECT * FROM users  WHERE email = :email');
   $query->bindValue(':email', $_POST['email']);
@@ -27,6 +20,8 @@ try {
   // var_dump($row);
   // print_r($row);
   // echo json_encode($row['pwd_reset_key']);
+
+ ;
 
   // SUCCESS
   $response = ["info" => "A reset password link has beem sent to your email. Please follow the instructions received in the email. You can now close this page.", "to" => $_POST['email']];
@@ -49,9 +44,6 @@ $_message = "You have requested a password reset.
       </a>";
 
 require_once(__DIR__ . "/../private/send_email.php");
-
-
-
 
 
 // function to manage responding in case of an error
